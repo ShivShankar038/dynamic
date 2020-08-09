@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+	<br><br>
+	<div class="box">
+	
+		<div class="box-text">Start</div><div class="lines"></div>
+		<span id="myForm"></span>
+		<div class="add-element popup" title="Add Element" onclick="myFunction()">+
+			<span class="popuptext" id="myPopup">
+				<div class="form-field">
+					<h5><span class="left">Form Fields</span><span class="right">x</span></h5>
+					<button onclick="nameFunction()">Start</button>
+					<button id="two-element" onclick="elementFunction(), disabledElement()">Conformation</button>
+				</div>
+			</span>
+		</div>
+		
+		<span id="elementForm"></span>
+		
+	</div>
+
+	<script type="text/javascript" src="element.js"></script>
+	<script type="text/javascript" src="popup.js"></script>
+	</body>
+</html>
