@@ -71,7 +71,8 @@ body { background: #d2d2d2; font-family: sarif, Arial; }
 .left { float: inherit; }
 .right { float: right; position: absolute; color: #ff4d4d; font-size: 20px; top: -14px; right: -14px; background-color: #fff; width: 24px; height: 24px; border-radius: 50%; z-index: 6; }
 
-button{ width:98px; height:42px; color:#4C4C4C; margin: 2px auto; border-radius: 5px; border-color: transparent; cursor: pointer; }
+button{ width:98px; height:42px; color:#4C4C4C; background-color: rgba(239, 239, 239, 1); margin: 2px auto; border-radius: 5px; border-color: transparent; cursor: pointer; }
+button:disabled { background-color: rgba(239, 239, 239, .3); }
 
 .margin { margin:0 auto; width: 220px; position :relative; }
 
