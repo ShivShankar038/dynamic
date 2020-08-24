@@ -14,7 +14,8 @@
 				line-height: 1.5;
 			}
 			
-			input { padding: 2px 8px; border-radius: 8px; border: none; height: 36px; }
+			.filter { height: 84px; display: flex; align-items: center; justify-content: center; margin: 20px 0 0; }
+			input { width: 240px; height: 36px; padding: 2px 8px; border-radius: 8px; border: none; position: fixed; z-index: 3; }
 			
 			/* NOTE:-  flex-direction, flex-wrap, flex-flow, justify-content, align-items, align-content,  */
 			
@@ -30,8 +31,8 @@
 			.item img { width: 100%; height: auto; border-radius: 6px 6px 0px 0px; }
 			
 			.desc { width: 100%; padding: 15px; color: #fff; background-color: rgba(0, 0, 0, 0.6); position: absolute; z-index: 2; }
-			.desc h2 { font-size:1.2em; padding-bottom: 6px; }
-			.desc p {font-size: 14px;}
+			.desc h2 { font-size:1.2em; padding-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+			.desc p {font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
 			
 			table { border-collapse: collapse; width: 92%; margin: 14px 4% 0; font-size: 14px; }
 			tr { text-align: left; border-bottom: 1px solid #5d5d5d; }
@@ -51,8 +52,8 @@
 			}
 			@media screen and (max-width: 990px) {
 				.desc { margin-top: -71px; }
-				.desc h2 { font-size:1em; padding-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-				.desc p {font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+				.desc h2 { font-size:1em; padding-bottom: 4px; }
+				.desc p {font-size: 10px;}
 				table { font-size: 10px; }
 			}
 			@media screen and (max-width: 767px) {
@@ -72,9 +73,8 @@
 	</head>
 	<body onload="callApiFunction();">
 		
-		<div class="container">
-			<input id="myInput" onkeyup="myFilter();" type="text" placeholder="Search..">
-			<br><br>
+		<div class="filter">
+			<input id="myInput" onkeyup="myFilter();" type="text" placeholder="Filter by name.." autocomplete="off">
 		</div>
 		
 		<div class="container" id="div1"> </div>
