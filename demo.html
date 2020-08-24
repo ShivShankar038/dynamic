@@ -1,99 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport"
-      content="width=device-width, initial-scale=1.0" />
-    <title>demo</title>
-	<style>
-		* { margin:0px; padding: 0px; box-sizing: border-box; }
-		body { background-color:#333; font-family: arial,serif; font-size:14px; box-sizing: border-box; }
-		.wrapper {  width: 100%; }
-		.container {  width: 96%; margin: 2%; }
-		.c-box { width: 25%; padding: 1%; float: left; position: relative; background: #333; margin-bottom: 26px; }
-		.c-box img { width: 100%; height: auto; border-radius: 6px 6px 0px 0px; }
-		.desc { width: 92%; background-color: rgba(0, 0, 0, 0.4); position: absolute; bottom: 247px; padding: 15px; color: #fff; }
-		.desc h2 { font-size:1.4em; padding-bottom: 6px; }
-		.desc p {font-size: 14px;}
-		.list {
-		  position: relative; background: #4d4d4d !important; color: #fff; width: 100%; top: 98%; padding: 0 2%; margin-top: -4px;
-		}
-		ul { list-style-type: none; padding: 10px; }
-		ul li {
-		  margin: 5px;
-		  padding: 10px 4px;
-		  border-bottom: 1px solid #5d5d5d;
-		  letter-spacing: 1px;
-		}
-		li:nth-child(5) { border-bottom: none; }
-		
-		.right {float: right; color: #ffb64a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
-		
-		@media screen and (max-width: 2560px) {
-			.desc { bottom: 256px; }
-		}
-		@media screen and (max-width: 1580px) {
-			.right {max-width: 220px;}
-		}
-		@media screen and (max-width: 1440px) {
-			.right {max-width: 190px;}
-		}
-		@media screen and (max-width: 1024px) {
-			.right {max-width: 100px;}
-		}
-		@media screen and (max-width: 768px) {
-			.c-box { width: 50%; padding: 0 1%; float: left; position: relative; background: #333; margin-bottom: 26px; }
-			.desc { width: 96%; bottom: 242px; }
-		}
-		@media screen and (max-width: 425px) {
-			.right {max-width: 80px;}
-			.desc h2 { font-size: 1em; }
-			.desc p { font-size: 10px; }
-		}
-		@media screen and (max-width: 375px) {
-			.desc { bottom: 212px; }
-			ul li {
-				margin: 5px;
-				padding: 10px 0px;
-				border-bottom: 1px solid #5d5d5d;
-				font-size: 10px;
+<html>
+	<head>
+		<title>css | Grid</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style>
+			*{
+				margin:0px; padding:0px; box-sizing: border-box;
 			}
-		}
-		@media screen and (max-width: 320px) {
-			.c-box { width: 100%; }
-			.desc { width: 100%; }
-			.right { max-width: 172px; }
-		}
-    
-	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			body {
+				background-color: #333;
+				color: white;
+				font-family: Verdana,sans-serif;
+				font-size: 15px;
+				line-height: 1.5;
+			}
+			
+			input { padding: 2px 8px; border-radius: 8px; border: none; height: 36px; }
+			
+			/* NOTE:-  flex-direction, flex-wrap, flex-flow, justify-content, align-items, align-content,  */
+			
+			/* 3x3 grid, constrained proportions (16:9) */
+			.container {
+			  display: flex;
+			  flex-wrap: wrap;
+			  justify-content: space-between;
+			  margin: 1%;
+			}
+			.item { position: relative; width: 23%; margin:1%; background-color: #4d4d4d; border-radius: 6px 6px 0px 0px;}
+			
+			.item img { width: 100%; height: auto; border-radius: 6px 6px 0px 0px; }
+			
+			.desc { width: 100%; padding: 15px; color: #fff; background-color: rgba(0, 0, 0, 0.6); position: absolute; z-index: 2; }
+			.desc h2 { font-size:1.2em; padding-bottom: 6px; }
+			.desc p {font-size: 14px;}
+			
+			table { border-collapse: collapse; width: 92%; margin: 14px 4% 0; font-size: 14px; }
+			tr { text-align: left; border-bottom: 1px solid #5d5d5d; }
+			td { margin: 5px; padding: 10px 4px; }
+			
+			tr:nth-child(5) { border-bottom: none; }
+			
+			.right { float: right; color: #ffb64a; text-align: right; }
+			
+			
+			@media screen and (min-width: 1221px) {
+				.desc { margin-top: -84px; }
+			}
+			@media screen and (max-width: 1220px) {
+				.item { width: 23%; }
+				.desc { margin-top: -105px; }
+			}
+			@media screen and (max-width: 990px) {
+				.desc { margin-top: -71px; }
+				.desc h2 { font-size:1em; padding-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+				.desc p {font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+				table { font-size: 10px; }
+			}
+			@media screen and (max-width: 767px) {
+				.item { width: 48% }
+				.desc { margin-top: -74px; }
+				.desc h2 { font-size:1em; padding-bottom: 4px; }
+				.desc p {font-size: 12px;}
+				table { font-size: 12px; }
+			}
+			@media screen and (max-width: 320px) {
+				.item { width: 98%; margin-top: 12px; }
+				.desc { margin-top: -74px; }
+			}
+			
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	</head>
 	<body onload="callApiFunction();">
-		<div class="wrapper">
 		
-			<div class="container" id="div1">
-				
-			</div>
-			
+		<div class="container">
+			<input id="myInput" onkeyup="myFilter();" type="text" placeholder="Search..">
+			<br><br>
 		</div>
+		
+		<div class="container" id="div1"> </div>
+		
 		<script>
 			function callApiFunction() {
 			var htmlcontent='';
 				$.ajax({url: "https://rickandmortyapi.com/api/character/", success: function(result){
-				console.log(result);
-				//$.each(result.results, function(data) {
-				 for (i = 0; i < result.results.length; i++) {
-				 
-				 /*var dt1 = new Date();
-				 var dt2 = Date.parse(result.results[i].created);
-				 var c = (dt1, dt2);
-				 var n = c.toString();*/
-				 
-				htmlcontent+='<div class="c-box"><img class="image" src='+result.results[i].image+' alt=""><div class="desc"><h2>'+result.results[i].name+'<h2><p>id: '+result.results[i].id+' - '+result.results[i].created+'<p></div><div class="list"><ul><li>Status <span class="right">'+result.results[i].status+'</span></li><li> Species <span class="right">'+result.results[i].species+'</span></li><li>Gender <span class="right">'+result.results[i].gender+'</span></li><li>Origin <span class="right">'+result.results[i].origin.name+'</span></li><li>Last<br>Location <span class="right">'+result.results[i].location.name+'</span></li></ul></div></div>';
-				}; 
+				
+				  for (i = 0; i < result.results.length; i++) {
+				  var date1 = Date.parse(result.results[i].created);
+                 
+                  var today = new Date();
+                  
+                 var diffTime = Math.abs(today - date1);
+                  var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+                  var yearsDiff = Math.ceil(diffDays / 365);
+				  
+				    htmlcontent+='<div class="item"><figure><img class="image" src='+result.results[i].image+' /><figcaption class="desc"><h2>'+result.results[i].name+'</h2><p>id: '+result.results[i].id+' - Created '+yearsDiff+' years ago</p></figcaption></figure><table><tr><td>Status</td><td class="right">'+result.results[i].status+'</td></tr><tr><td>Species</td><td class="right">'+result.results[i].species+'</td></tr><tr><td>Gender</td><td class="right">'+result.results[i].gender+'</td></tr><tr><td>Origin</td><td class="right">'+result.results[i].origin.name+'</td></tr><tr><td>Last Location</td><td class="right">'+result.results[i].location.name+'</td></tr></table></div>';
+				  }; 
 				  $("#div1").html(htmlcontent);
+				  
 				}});
 			}
 		</script>
+		<script>
+			function myFilter() {
+			  // Declare variables
+
+			var input, filter, figure, h2, item, i, txtValue;
+			input = document.getElementById('myInput');
+			  filter = input.value.toUpperCase();
+			figure = document.getElementById("div1");
+			item = figure.getElementsByClassName('item');
+
+			// Loop through all list items, and hide those who don't match the search query
+			for (i = 0; i < item.length; i++) {
+				h2 = item[i].getElementsByTagName("h2")[0];
+			    txtValue = h2.textContent || h2.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				  item[i].style.display = "";
+				} 
+				else {
+				  item[i].style.display = "none";
+				}
+			}
+			}
+
+		</script>
+		
 	</body>
 </html>
