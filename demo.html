@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+	<style>
+		* { margin:0px; padding: 0px; box-sizing: border-box; }
+		body { background-color:#333; font-family: arial,serif; font-size:14px; box-sizing: border-box; }
+		.wrapper {  width: 100%; }
+		.container {  width: 96%; margin: 2%; }
+		.c-box { width: 25%; padding: 1%; float: left; position: relative; background: #333; margin-bottom: 26px; }
+		.c-box img { width: 100%; height: auto; border-radius: 6px 6px 0px 0px; }
+		.desc { width: 92%; background-color: rgba(0, 0, 0, 0.4); position: absolute; bottom: 247px; padding: 15px; color: #fff; }
+		.desc h2 { font-size:1.4em; padding-bottom: 6px; }
+		.desc p {font-size: 14px;}
+		.list {
+		  position: relative; background: #4d4d4d !important; color: #fff; width: 100%; top: 98%; padding: 0 2%; margin-top: -4px;
+		}
+		ul { list-style-type: none; padding: 10px; }
+		ul li {
+		  margin: 5px;
+		  padding: 10px 4px;
+		  border-bottom: 1px solid #5d5d5d;
+		  letter-spacing: 1px;
+		}
+		li:nth-child(5) { border-bottom: none; }
+		
+		.right {float: right; color: #ffb64a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+		
+		@media screen and (max-width: 2560px) {
+			.desc { bottom: 260px; }
+		}
+		@media screen and (max-width: 1580px) {
+			.right {max-width: 220px;}
+		}
+		@media screen and (max-width: 1440px) {
+			.right {max-width: 190px;}
+		}
+		@media screen and (max-width: 1024px) {
+			.right {max-width: 100px;}
+		}
+		@media screen and (max-width: 768px) {
+			.c-box { width: 50%; padding: 0 1%; float: left; position: relative; background: #333; margin-bottom: 26px; }
+			.desc { width: 96%; bottom: 242px; }
+		}
+		@media screen and (max-width: 425px) {
+			.right {max-width: 80px;}
+			.desc h2 { font-size: 1em; }
+			.desc p { font-size: 10px; }
+		}
+    
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body onload="callApiFunction();">
+		<div class="wrapper">
+		
+			<div class="container" id="div1">
+				
+			</div>
+			
+		</div>
+		<script>
+			function callApiFunction() {
+			var htmlcontent='';
+				$.ajax({url: "https://rickandmortyapi.com/api/character/", success: function(result){
+				console.log(result);
+				//$.each(result.results, function(data) {
+				 for (i = 0; i < result.results.length; i++) {
+				 
+				 /*var dt1 = new Date();
+				 var dt2 = Date.parse(result.results[i].created);
+				 var c = (dt1, dt2);
+				 var n = c.toString();*/
+				 
+				htmlcontent+='<div class="c-box"><img class="image" src='+result.results[i].image+' alt=""><div class="desc"><h2>'+result.results[i].name+'<h2><p>id: '+result.results[i].id+' - '+result.results[i].created+'<p></div><div class="list"><ul><li>Status <span class="right">'+result.results[i].status+'</span></li><li> Species <span class="right">'+result.results[i].species+'</span></li><li>Gender <span class="right">'+result.results[i].gender+'</span></li><li>Origin <span class="right">'+result.results[i].origin.name+'</span></li><li>Last<br>Location <span class="right">'+result.results[i].location.name+'</span></li></ul></div></div>';
+				}; 
+				  $("#div1").html(htmlcontent);
+				}});
+			}
+		</script>
+	</body>
+</html>
