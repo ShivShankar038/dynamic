@@ -7,25 +7,36 @@
 				margin:0px; padding:0px; box-sizing: border-box;
 			}
 			body {
-				background-color: #333;
+				background-color: #20242d;
 				color: white;
 				font-family: Verdana,sans-serif;
 				font-size: 15px;
 				line-height: 1.5;
 			}
 			
-			.filter { height: 84px; display: flex; align-items: center; justify-content: center; margin: 20px 0 0; }
-			input { width: 240px; height: 36px; padding: 2px 8px; border-radius: 8px; border: none; position: fixed; z-index: 3; }
+			header { width: 100%; padding: 0 2%; background-color: #1d2127; box-shadow: 0px 2px 4px black; position: fixed; z-index: 3; }
 			
-			/* NOTE:-  flex-direction, flex-wrap, flex-flow, justify-content, align-items, align-content,  */
+			/* For Text Shadow.  */
+			header span { font-size: 42px; color:#13181a; padding-left: 4px;
+                text-shadow: 
+                    -1px -1px 0 rgba(0, 0, 0, 1),
+                    1px -1px 2px rgba(103, 103, 103, 0.4),
+                    -1px 1px 1px rgba(103, 103, 103, 0.5),
+                    1px 1px 0 rgba(0, 0, 0, 0.7);
+            }
 			
-			/* 3x3 grid, constrained proportions (16:9) */
-			.container {
-			  display: flex;
-			  flex-wrap: wrap;
-			  justify-content: space-between;
-			  margin: 1%;
-			}
+			.filter { height: 84px; display: flex; align-items: center; justify-content: space-between;; }
+			
+			input { max-width: 240px; }
+			
+			input[type=text] { width: 100%; }
+            input.form-control { background-color: #13181b; color: #f0f0f0; border-radius: 4px; font-size: 16px; padding: 12px 16px; border: 1px solid #13181b; box-shadow: 1px 1px 2px rgba(103, 103, 103, 0.4), 2px 3px 5px rgba(0, 0, 0, 0.7) inset;
+            }
+			
+			section { padding-top: 84px; }
+			
+			.container { display: flex; flex-wrap: wrap; justify-content: space-between; margin: 1%; }
+			
 			.item { position: relative; width: 23%; margin:1%; background-color: #4d4d4d; border-radius: 6px 6px 0px 0px;}
 			
 			.item img { width: 100%; height: auto; border-radius: 6px 6px 0px 0px; }
@@ -73,11 +84,15 @@
 	</head>
 	<body onload="callApiFunction();">
 		
-		<div class="filter">
-			<input id="myInput" onkeyup="myFilter();" type="text" placeholder="Filter by name.." autocomplete="off">
-		</div>
+		<header class="filter">
+			<img src="images/pepole-icon.png" alt="pepole-icon.png">
+			
+			<input id="myInput" class="form-control" onkeyup="myFilter();" type="text" placeholder="Filter by name.." autocomplete="off">
+		</header>
 		
-		<div class="container" id="div1"> </div>
+		<section>
+			<div class="container" id="div1"> </div>
+		</section>
 		
 		<script>
 			function callApiFunction() {
