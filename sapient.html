@@ -1,0 +1,145 @@
+<html>
+	<head>
+		<title>demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<style>
+			*{
+				margin:0px; padding:0px; box-sizing: border-box;
+			}
+			body {
+				background-color: #20242d;
+				color: white;
+				font-family: Verdana,sans-serif;
+				font-size: 15px;
+				line-height: 1.5;
+			}
+			
+			header { width: 100%; padding: 0 2%; background-color: #1d2127; box-shadow: 0px 2px 4px black; position: fixed; z-index: 3; }
+			
+			/* For Text Shadow.  */
+			header span { font-size: 42px; color:#13181a; padding-left: 4px;
+                text-shadow: 
+                    -1px -1px 0 rgba(0, 0, 0, 1),
+                    1px -1px 2px rgba(103, 103, 103, 0.4),
+                    -1px 1px 1px rgba(103, 103, 103, 0.5),
+                    1px 1px 0 rgba(0, 0, 0, 0.7);
+            }
+			
+			.filter { height: 84px; display: flex; align-items: center; justify-content: space-between;; }
+			
+			input { max-width: 240px; }
+			
+			input[type=text] { width: 100%; }
+            input.form-control { background-color: #13181b; color: #f0f0f0; border-radius: 4px; font-size: 16px; padding: 12px 16px; border: 1px solid #13181b; box-shadow: 1px 1px 2px rgba(103, 103, 103, 0.4), 2px 3px 5px rgba(0, 0, 0, 0.7) inset;
+            }
+			
+			section { padding-top: 84px; }
+			
+			.container { display: flex; flex-wrap: wrap; justify-content: space-between; margin: 1%; }
+			
+			.item { position: relative; width: 23%; margin:1%; background-color: #4d4d4d; border-radius: 6px 6px 0px 0px;}
+			
+			.item img { width: 100%; height: auto; border-radius: 6px 6px 0px 0px; }
+			
+			.desc { width: 100%; padding: 15px; color: #fff; background-color: rgba(0, 0, 0, 0.6); position: absolute; z-index: 2; }
+			.desc h2 { font-size:1.2em; padding-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+			.desc p {font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+			
+			table { border-collapse: collapse; width: 92%; margin: 14px 4% 0; font-size: 14px; }
+			tr { text-align: left; border-bottom: 1px solid #5d5d5d; }
+			td { margin: 5px; padding: 10px 4px; }
+			
+			tr:nth-child(5) { border-bottom: none; }
+			
+			.right { float: right; color: #ffb64a; text-align: right; }
+			
+			
+			@media screen and (min-width: 1221px) {
+				.desc { margin-top: -84px; }
+			}
+			@media screen and (max-width: 1220px) {
+				.item { width: 23%; }
+				.desc { margin-top: -84px; }
+			}
+			@media screen and (max-width: 990px) {
+				.desc { margin-top: -71px; }
+				.desc h2 { font-size:1em; padding-bottom: 4px; }
+				.desc p {font-size: 10px;}
+				table { font-size: 10px; }
+			}
+			@media screen and (max-width: 767px) {
+				.item { width: 48% }
+				.desc { margin-top: -74px; }
+				.desc h2 { font-size:1em; padding-bottom: 4px; }
+				.desc p {font-size: 12px;}
+				table { font-size: 12px; }
+			}
+			@media screen and (max-width: 320px) {
+				.item { width: 98%; margin-top: 12px; }
+				.desc { margin-top: -74px; }
+			}
+			
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	<body onload="callApiFunction();">
+		
+		<header class="filter">
+			<img src="images/pepole-icon.png" alt="pepole-icon.png">
+			
+			<input id="myInput" class="form-control" onkeyup="myFilter();" type="text" placeholder="Filter by name.." autocomplete="off">
+		</header>
+		
+		<section>
+			<div class="container" id="div1"> </div>
+		</section>
+		
+		<script>
+			function callApiFunction() {
+			var htmlcontent='';
+				$.ajax({url: "https://rickandmortyapi.com/api/character/", success: function(result){
+				
+				  for (i = 0; i < result.results.length; i++) {
+				  var date1 = Date.parse(result.results[i].created);
+                 
+                  var today = new Date();
+                  
+                 var diffTime = Math.abs(today - date1);
+                  var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+
+                  var yearsDiff = Math.ceil(diffDays / 365);
+				  
+				    htmlcontent+='<div class="item"><figure><img class="image" src='+result.results[i].image+' /><figcaption class="desc"><h2>'+result.results[i].name+'</h2><p>id: '+result.results[i].id+' - Created '+yearsDiff+' years ago</p></figcaption></figure><table><tr><td>Status</td><td class="right">'+result.results[i].status+'</td></tr><tr><td>Species</td><td class="right">'+result.results[i].species+'</td></tr><tr><td>Gender</td><td class="right">'+result.results[i].gender+'</td></tr><tr><td>Origin</td><td class="right">'+result.results[i].origin.name+'</td></tr><tr><td>Last Location</td><td class="right">'+result.results[i].location.name+'</td></tr></table></div>';
+				  }; 
+				  $("#div1").html(htmlcontent);
+				  
+				}});
+			}
+		</script>
+		<script>
+			function myFilter() {
+			  // Declare variables
+
+			var input, filter, figure, h2, item, i, txtValue;
+			input = document.getElementById('myInput');
+			  filter = input.value.toUpperCase();
+			figure = document.getElementById("div1");
+			item = figure.getElementsByClassName('item');
+
+			// Loop through all list items, and hide those who don't match the search query
+			for (i = 0; i < item.length; i++) {
+				h2 = item[i].getElementsByTagName("h2")[0];
+			    txtValue = h2.textContent || h2.innerText;
+				if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				  item[i].style.display = "";
+				} 
+				else {
+				  item[i].style.display = "none";
+				}
+			}
+			}
+
+		</script>
+		
+	</body>
+</html>
